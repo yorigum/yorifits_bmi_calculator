@@ -9,10 +9,7 @@ const activeCardColor = Color(0xff1d1e33);
 const inActiveCardColor = Color(0xff111328);
 const bottomCornerColor = Color(0xffeb1555);
 
-enum Gender {
-  male,
-  female
-}
+enum Gender { male, female }
 
 class InputPage extends StatefulWidget {
   const InputPage({Key? key}) : super(key: key);
@@ -22,7 +19,6 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  
   Gender selectedGender = Gender.male;
 
   @override
@@ -39,43 +35,45 @@ class _InputPageState extends State<InputPage> {
               child: Row(
             children: <Widget>[
               Expanded(
-                  child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    selectedGender = Gender.male;
-                  });
-                },
                 child: ReusableCard(
-                  colour: selectedGender == Gender.male ? activeCardColor : inActiveCardColor,
+                  colour: selectedGender == Gender.male
+                      ? activeCardColor
+                      : inActiveCardColor,
                   cardChild: const IconContent(
                     icon: FontAwesomeIcons.mars,
                     label: 'MALE',
                   ),
+                  onPress: () {
+                    setState(() {
+                      selectedGender = Gender.male;
+                    });
+                  },
                 ),
-              )),
+              ),
               Expanded(
-                  child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    selectedGender = Gender.female;
-                  });
-                },
                 child: ReusableCard(
-                  colour: selectedGender == Gender.female ? activeCardColor : inActiveCardColor,
+                  colour: selectedGender == Gender.female
+                      ? activeCardColor
+                      : inActiveCardColor,
                   cardChild: const IconContent(
                     icon: FontAwesomeIcons.venus,
                     label: 'FEMALE',
                   ),
+                  onPress: () {
+                    setState(() {
+                      selectedGender = Gender.female;
+                    });
+                  },
                 ),
-              ))
+              )
             ],
           )),
-          const Expanded(child: ReusableCard(colour: activeCardColor)),
+         Expanded(child: ReusableCard(colour: activeCardColor, onPress:(){},)),
           Expanded(
               child: Row(
-            children: const <Widget>[
-              Expanded(child: ReusableCard(colour: activeCardColor)),
-              Expanded(child: ReusableCard(colour: activeCardColor))
+            children: <Widget>[
+              Expanded(child: ReusableCard(colour: activeCardColor, onPress: (){},)),
+              Expanded(child: ReusableCard(colour: activeCardColor, onPress: (){},))
             ],
           )),
           Container(
